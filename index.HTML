@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyberpunk Team Intro</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                yellow: "#FCEE0A",
+                blue: "#00F0FF",
+                pink: "#FF003C",
+                dark: "#0b0b0b",
+                panel: "#1a1a1a",
+              },
+            },
+            fontFamily: {
+              orbitron: ["Orbitron", "sans-serif"],
+              rajdhani: ["Rajdhani", "sans-serif"],
+            },
+            boxShadow: {
+              "neon-blue": "0 0 10px #00F0FF, 0 0 20px #00F0FF",
+              "neon-pink": "0 0 10px #FF003C, 0 0 20px #FF003C",
+              "neon-yellow": "0 0 10px #FCEE0A, 0 0 20px #FCEE0A",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #050505;
+        background-image: linear-gradient(
+            rgba(0, 240, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+        background-size: 30px 30px;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+
+      /* Glitch Effect */
+      .glitch-text {
+        position: relative;
+        animation: glitch-anim 3s infinite;
+      }
+
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .glitch-text::before {
+        left: 2px;
+        text-shadow: -1px 0 #ff00c1;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim-2 3s infinite linear alternate-reverse;
+      }
+
+      .glitch-text::after {
+        left: -2px;
+        text-shadow: -1px 0 #00fff9;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim-3 2s infinite linear alternate-reverse;
+      }
+
+      @keyframes glitch-anim {
+        0% {
+          text-shadow: 2px 0 0px #ff00c1, -2px 0 0px #00fff9;
+        }
+        20% {
+          text-shadow: 2px 0 0px #ff00c1, -2px 0 0px #00fff9;
+        }
+        21% {
+          text-shadow: -2px 0 4px #ff00c1, 2px 0 4px #00fff9;
+        }
+        25% {
+          text-shadow: 2px 0 0px #ff00c1, -2px 0 0px #00fff9;
+        }
+        100% {
+          text-shadow: 2px 0 0px #ff00c1, -2px 0 0px #00fff9;
+        }
+      }
+
+      @keyframes glitch-anim-2 {
+        0% {
+          clip: rect(12px, 9999px, 83px, 0);
+        }
+        20% {
+          clip: rect(2px, 9999px, 98px, 0);
+        }
+        40% {
+          clip: rect(54px, 9999px, 86px, 0);
+        }
+        60% {
+          clip: rect(78px, 9999px, 7px, 0);
+        }
+        80% {
+          clip: rect(23px, 9999px, 43px, 0);
+        }
+        100% {
+          clip: rect(9px, 9999px, 65px, 0);
+        }
+      }
+
+      @keyframes glitch-anim-3 {
+        0% {
+          clip: rect(2px, 9999px, 63px, 0);
+        }
+        20% {
+          clip: rect(82px, 9999px, 28px, 0);
+        }
+        40% {
+          clip: rect(34px, 9999px, 16px, 0);
+        }
+        60% {
+          clip: rect(7px, 9999px, 9px, 0);
+        }
+        80% {
+          clip: rect(3px, 9999px, 83px, 0);
+        }
+        100% {
+          clip: rect(89px, 9999px, 25px, 0);
+        }
+      }
+
+      /* Tech Borders */
+      .tech-border {
+        position: relative;
+        background: rgba(26, 26, 26, 0.8);
+        clip-path: polygon(
+          0 0,
+          100% 0,
+          100% calc(100% - 20px),
+          calc(100% - 20px) 100%,
+          0 100%
+        );
+        border-left: 2px solid #00f0ff;
+        transition: all 0.3s ease;
+      }
+
+      .tech-border::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 20px;
+        height: 2px;
+        background: #00f0ff;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+
+      .tech-border:hover {
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        border-left-color: #fcee0a;
+      }
+
+      .tech-border:hover::after {
+        background: #fcee0a;
+      }
+
+      /* Image Hex Clip */
+      .cyber-img-container {
+        position: relative;
+        padding: 5px;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .cyber-img {
+        clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+        transition: all 0.3s ease;
+        filter: grayscale(100%) contrast(1.2);
+      }
+
+      .cyber-img-container:hover .cyber-img {
+        filter: grayscale(0%) contrast(1);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      /* Scanline Overlay */
+      .scanlines {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.1) 50%,
+          rgba(0, 0, 0, 0.1)
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body
+    class="font-rajdhani antialiased min-h-screen selection:bg-cyber-pink selection:text-white"
+  >
+    <!-- Scanlines Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Header -->
+    <header class="w-full py-16 text-center relative overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent via-cyber-blue/5 to-transparent opacity-20"
+      ></div>
+      <div class="container mx-auto px-4 relative z-10">
+        <h1
+          class="text-6xl md:text-8xl font-black font-orbitron tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyber-yellow via-cyber-pink to-cyber-blue glitch-text mb-4"
+          data-text="[THE NIGGAS]"
+        >
+          [THE NIGGAS]
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-cyber-blue font-light tracking-[0.5em] uppercase border-b border-cyber-blue inline-block pb-2"
+        >
+          Netrunners // Mercenaries // Legends
+        </p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 space-y-24 max-w-6xl">
+      <!-- Function to generate member block structure -->
+      <!-- Since we are writing static HTML, we manually repeat blocks and swap classes -->
+
+      <!-- MEMBER 01 (Left Photo, Right Text) -->
+      <section class="flex flex-col md:flex-row items-center gap-8 group">
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+          <div class="cyber-img-container w-64 h-64 md:w-80 md:h-80">
+            <img
+              src="PKJENA.jpg"
+              alt="Member 1"
+              class="cyber-img w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 relative">
+          <div class="tech-border p-8 relative">
+            <div
+              class="absolute -top-3 -right-3 text-cyber-yellow font-bold text-sm tracking-widest"
+            >
+              01 // MEMBER
+            </div>
+            <h2
+              class="text-4xl font-bold font-orbitron text-white mb-2 group-hover:text-cyber-yellow transition-colors"
+            >
+              [P.K JENA]
+            </h2>
+            <h3
+              class="text-xl text-cyber-pink font-semibold uppercase tracking-wider mb-4"
+            >
+              [HEAD OF NIGGAS]
+            </h3>
+            <p class="text-gray-300 leading-relaxed">
+              [UNDISPUTED LEADER AND FOUNDER OF THE NIGGAS]
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMBER 02 (Right Photo, Left Text) -->
+      <section
+        class="flex flex-col md:flex-row-reverse items-center gap-8 group"
+      >
+        <div class="w-full md:w-1/2 flex justify-center md:justify-start">
+          <div
+            class="cyber-img-container w-64 h-64 md:w-80 md:h-80 border-cyber-pink/30"
+          >
+            <img
+              src="BOBA.jpeg"
+              alt="Member 2"
+              class="cyber-img w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 relative">
+          <div
+            class="tech-border p-8 relative !border-l-0 !border-r-2 !border-r-cyber-pink hover:!border-r-cyber-blue"
+          >
+            <div
+              class="absolute -top-3 -left-3 text-cyber-pink font-bold text-sm tracking-widest"
+            >
+              02 // MEMBER
+            </div>
+            <h2
+              class="text-4xl font-bold font-orbitron text-white mb-2 group-hover:text-cyber-pink transition-colors text-right"
+            >
+              [BOBA]
+            </h2>
+            <h3
+              class="text-xl text-cyber-blue font-semibold uppercase tracking-wider mb-4 text-right"
+            >
+              [HEAD OF MANAGEMENT]
+            </h3>
+            <p class="text-gray-300 leading-relaxed text-right">
+              [HEAD OF PHOTOFACTORY]
+            </p>
+            <!-- Overriding ::after psuedo element for right border via inline style is hard, so we rely on CSS tweaks or just accept the left border style for consistency, OR we use specific classes. 
+                         Let's keep the standard 'tech-border' which has left border, maybe it looks cool even on the right side. 
+                         Actually, let's just use 'tech-border' as is for consistency, it looks like a data panel. -->
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMBER 03 (Left Photo, Right Text) -->
+      <section class="flex flex-col md:flex-row items-center gap-8 group">
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+          <div class="cyber-img-container w-64 h-64 md:w-80 md:h-80">
+            <img
+              src="PREM.jpeg"
+              alt="Member 3"
+              class="cyber-img w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 relative">
+          <div class="tech-border p-8 relative">
+            <div
+              class="absolute -top-3 -right-3 text-cyber-yellow font-bold text-sm tracking-widest"
+            >
+              03 // MEMBER
+            </div>
+            <h2
+              class="text-4xl font-bold font-orbitron text-white mb-2 group-hover:text-cyber-yellow transition-colors"
+            >
+              [PREM]
+            </h2>
+            <h3
+              class="text-xl text-cyber-pink font-semibold uppercase tracking-wider mb-4"
+            >
+              [RADIATOR]
+            </h3>
+            <p class="text-gray-300 leading-relaxed">[SOCIAL ADMIN]</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMBER 04 (Right Photo, Left Text) -->
+      <section
+        class="flex flex-col md:flex-row-reverse items-center gap-8 group"
+      >
+        <div class="w-full md:w-1/2 flex justify-center md:justify-start">
+          <div
+            class="cyber-img-container w-64 h-64 md:w-80 md:h-80 border-cyber-pink/30"
+          >
+            <img
+              src="PRITAM.jpeg"
+              alt="Member 4"
+              class="cyber-img w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 relative">
+          <div
+            class="tech-border p-8 relative !border-l-0 !border-r-2 !border-r-cyber-pink hover:!border-r-cyber-blue"
+          >
+            <div
+              class="absolute -top-3 -left-3 text-cyber-pink font-bold text-sm tracking-widest"
+            >
+              04 // MEMBER
+            </div>
+            <h2
+              class="text-4xl font-bold font-orbitron text-white mb-2 group-hover:text-cyber-pink transition-colors text-right"
+            >
+              [PRITAM]
+            </h2>
+            <h3
+              class="text-xl text-cyber-blue font-semibold uppercase tracking-wider mb-4 text-right"
+            >
+              [COORDINATOR]
+            </h3>
+            <p class="text-gray-300 leading-relaxed text-right">[❤️]</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMBER 05 (Left Photo, Right Text) -->
+      <section class="flex flex-col md:flex-row items-center gap-8 group">
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+          <div class="cyber-img-container w-64 h-64 md:w-80 md:h-80">
+            <img
+              src="PRANAB.jpeg"
+              alt="Member 5"
+              class="cyber-img w-full h-full object-cover"
+            />
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 relative">
+          <div class="tech-border p-8 relative">
+            <div
+              class="absolute -top-3 -right-3 text-cyber-yellow font-bold text-sm tracking-widest"
+            >
+              05 // MEMBER
+            </div>
+            <h2
+              class="text-4xl font-bold font-orbitron text-white mb-2 group-hover:text-cyber-yellow transition-colors"
+            >
+              [PRANAB]
+            </h2>
+            <h3
+              class="text-xl text-cyber-pink font-semibold uppercase tracking-wider mb-4"
+            >
+              [MEDIATOR]
+            </h3>
+            <p class="text-gray-300 leading-relaxed">[💥]</p>
+          </div>
+        </div>
+      </section>
+
+    
+    <!-- Footer -->
+    <footer
+      class="text-center py-12 text-gray-500 border-t border-gray-800 mt-12 bg-black"
+    >
+      <p class="font-rajdhani tracking-widest text-sm">
+        SYSTEM_OF_NIGGAS // © 2077 [THE NIGGAS]
+      </p>
+    </footer>
+  </body>
+</html>
